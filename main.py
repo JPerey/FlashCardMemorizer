@@ -37,6 +37,7 @@ def print_whatever():
     global language_set
     print(language_set)
 
+
 def remove_main_menu():
     timer_label.place(x=2000, y=2000)
     timer_text.place(x=2000, y=2000)
@@ -82,18 +83,21 @@ def update_page():
     new_translation_text.place(x=100, y=460)
     change_set_btn.place(x=300, y=160)
     update_set_btn.place(x=300, y=360)
+    file_name_text.focus()
 
 
 def update_set():
     file_name = file_name_text.get()
-    SetUpdateChoose.update_language(file_name, language_set)
+    new_pronunciation = new_word_text.get()
+    new_symbol = new_symbol_text.get()
+    new_translation = new_translation_text.get()
+    SetUpdateChoose.update_language(file_name, new_symbol, new_pronunciation, new_translation)
 
 
 def change_set():
     global language_set
     file_name = file_name_text.get()
     language_set = SetUpdateChoose.choose_language(file_name)
-    print_whatever()
 
 
 # Functions ----------------------------------
@@ -139,11 +143,11 @@ file_name_label.place(x=2000, y=2000)
 file_name_text = Entry()
 file_name_text.place(x=2000, y=2000)
 
-change_set_btn = Button(text="Change Set (include .csv)", highlightthickness=0, font=FONT_CARD_BTN, width=20,
-                        command=change_set)
+change_set_btn = Button(text="Update language stored (include .csv)", highlightthickness=0, font=FONT_CARD_BTN,
+                        width=25, command=change_set)
 change_set_btn.place(x=2000, y=2000)
 
-update_set_btn = Button(text="Update Set with New Word", highlightthickness=0, font=FONT_CARD_BTN, width=20,
+update_set_btn = Button(text="Update Set with New Word", highlightthickness=0, font=FONT_CARD_BTN, width=25,
                         command=update_set)
 update_set_btn.place(x=2000, y=2000)
 
