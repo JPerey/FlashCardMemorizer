@@ -1,10 +1,10 @@
-from tkinter import *
 import pandas
 
 
 def choose_language(file_name):
     csv_dataframe = pandas.read_csv(f"data/{file_name}")
     csv_dictionary = {value.symbol: [value.pronunciation, value.meaning] for (key, value) in csv_dataframe.iterrows()}
+    print(csv_dictionary)
     return csv_dictionary
 
 
