@@ -14,7 +14,7 @@ import random
     labels show up and a text box and buttons show up
     3c. scoring to be introduced and weighting of words( the more success with a word the less it appears
     [possible future update])
-4. create logic of flash cards
+4. create logic of flash cards X
 5. save different factors to a separate file (csv or json not sure yet)
 
 
@@ -41,7 +41,6 @@ language_set = None
 def flashcard_page():
     remove_main_menu()
     remove_update_widgets()
-    canvas.itemconfig(canvas_image, image=card_back)
     title_label.place(x=300, y=50)
     symbol_label.place(x=400, y=200)
     pronunciation_label.place(x=350, y=300)
@@ -54,13 +53,26 @@ def next_card():
     global current_card
     current_card = random.choice(key_list)
     print(current_card)
+    canvas.itemconfig(canvas_image, image=card_back)
     title_label["bg"] = CARD_BACK_COLOR
+    symbol_label["bg"] = CARD_BACK_COLOR
+    pronunciation_label["bg"] = CARD_BACK_COLOR
+    title_label["fg"] = "white"
+    symbol_label["fg"] = "white"
+    pronunciation_label["fg"] = "white"
     symbol_label["text"] = current_card
     pronunciation_label["text"] = language_set[current_card][0]
     window.after(5000, func=english_side)
 
 
 def english_side():
+    canvas.itemconfig(canvas_image, image=card_front)
+    title_label["bg"] = "white"
+    symbol_label["bg"] = "white"
+    pronunciation_label["bg"] = "white"
+    title_label["fg"] = "black"
+    symbol_label["fg"] = "black"
+    pronunciation_label["fg"] = "black"
     symbol_label["text"] = current_card
     pronunciation_label["text"] = language_set[current_card][1]
 
